@@ -1,0 +1,44 @@
+﻿@using BancoSowConnect.Domain.Model.ReturnPattern
+@using BancoSowConnect.Domain.Model.ViewModels
+@model  BancoViewModel
+
+@{
+    ViewBag.Title = "Excluir banco";
+}
+<div class="panel panel-info col-md-6 col-md-offset-3">
+    <div class="panel-body">
+
+        <h3>Você tem certeza que quer excluir esse banco?</h3>
+        <div>
+            <h4>@ViewBag.Title - @Model.Nome</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.Id)
+                <div class="form-actions no-color">
+                    <input type="submit" value="Delete" class="btn btn-default" /> |
+                    @Html.ActionLink("Voltar", "Search")
+                </div>
+
+                if (ViewBag.BaseRetornoDTO != null)
+                {
+                    <div class="panel panel-body">
+                        @Html.Partial("_Mensagem", (RetornoDTO)ViewBag.BaseRetornoDTO)
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>

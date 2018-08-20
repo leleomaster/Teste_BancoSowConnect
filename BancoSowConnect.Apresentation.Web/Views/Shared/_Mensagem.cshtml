@@ -1,0 +1,29 @@
+﻿@using BancoSowConnect.Domain.Model.ReturnPattern
+@model  RetornoDTO
+
+@{ 
+    string alertClass = string.Empty;
+
+    if (Model.EStatusResponse == EStatusResponse.Success)
+    {
+        alertClass = "alert alert-success";
+    }
+    else if (Model.EStatusResponse == EStatusResponse.ErrorValidacao)
+    {
+        alertClass = "alert alert-warning";
+    }
+    else
+    {
+        alertClass = "alert alert-danger";
+    }
+}
+
+<div class="@alertClass  show" role="alert">
+    <strong>
+        @Model.Message
+    </strong>
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>

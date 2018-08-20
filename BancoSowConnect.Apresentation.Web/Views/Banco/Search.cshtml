@@ -1,0 +1,55 @@
+﻿@using BancoSowConnect.Domain.Model.ReturnPattern
+@using BancoSowConnect.Domain.Model.ViewModels
+@model  BaseRetornoDTO<List<BancoViewModel>>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+@if (Model.EStatusResponse == EStatusResponse.Success)
+{
+    <div class="panel panel-info col-md-6 col-md-offset-3">
+        <div class="panel-body">
+            <h2>Consulta Bancos</h2>
+            <p>
+                @Html.ActionLink("Criar um novo Banco", "Create", "Banco",  new { @class = "btn btn-primary" })
+            </p>
+            <table class="table">
+                <tr>
+                    <th>
+                        Nomes dos Bancos
+                    </th>
+                    <th>
+                        Ação
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Value)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Editar banco", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Excluir  banco", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+}
+else
+{
+    <div class="panel panel-danger col-md-6 col-md-offset-3">
+        <div class="panel-body">
+            @Html.Partial("_Mensagem", Model)
+        </div>
+    </div>
+}
+
+
+

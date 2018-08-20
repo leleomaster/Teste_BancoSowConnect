@@ -1,0 +1,41 @@
+﻿@using BancoSowConnect.Domain.Model.ReturnPattern
+@using BancoSowConnect.Domain.Model.ViewModels
+@model  BancoViewModel
+
+@{
+    ViewBag.Title = "Cadastrar banco";
+}
+
+<div class="panel panel-info col-md-6 col-md-offset-3">
+    <div class="panel-body">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <h4>Criar banco</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+
+                @if (ViewBag.BaseRetornoDTO != null)
+                {
+                    <div class="panel panel-body">
+                        @Html.Partial("_Mensagem", (RetornoDTO)ViewBag.BaseRetornoDTO)
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
