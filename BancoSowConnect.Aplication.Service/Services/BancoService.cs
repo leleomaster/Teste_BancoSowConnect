@@ -36,6 +36,7 @@ namespace BancoSowConnect.Aplication.Service.Services
             }, MensagemSistema.FormataMensagem(MensagemSistema.Excluir, "Banco"), ref retornoDTO);
 
             return retornoDTO;
+
         }
 
         public BaseRetornoDTO<BancoViewModel> GetById(int id)
