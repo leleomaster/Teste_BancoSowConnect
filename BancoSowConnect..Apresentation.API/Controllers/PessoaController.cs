@@ -17,9 +17,17 @@ namespace BancoSowConnect.Apresentation.API.Controllers
 
         public PessoaController(IPessoaService pessoaService) => _pessoaService = pessoaService;
 
-        [Route("v1/obter")]
+        [Route("v1/obter/todos")]
+        // GET api/<controller>/5
+        public BaseRetornoDTO<List<PessoaViewModel>> Get() => _pessoaService.SelectAll();
+
+        [Route("v1/obter/por/id")]
         // GET api/<controller>/5
         public BaseRetornoDTO<PessoaViewModel> Get(int id) => _pessoaService.GetById(id);
+
+        [Route("v1/obter/por/nome")]
+        // GET api/<controller>/5
+        public BaseRetornoDTO<List<PessoaViewModel>> Get(string name) => _pessoaService.GetByName(name);
 
         [Route("v1/criar")]
         // POST api/<controller>

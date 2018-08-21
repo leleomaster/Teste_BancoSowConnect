@@ -9,5 +9,6 @@ namespace BancoSowConnect.Infrastructure.Repository.Interfaces
 {
     public interface IPessoaRepository : IBaseRepository<PessoaEntity>
     {
+        IEnumerable<PessoaEntity> GetByName(string name);
     }
 }

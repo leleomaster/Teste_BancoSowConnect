@@ -69,7 +69,7 @@
     <Compile Include="Repositories\FactoryConnection.cs" />
     <Compile Include="Repositories\OperacaoContaRepository.cs" />
     <Compile Include="Repositories\PaisRepository.cs" />
-    <Compile Include="Repositories\PassoaRepository.cs" />
+    <Compile Include="Repositories\PessoaRepository.cs" />
     <Compile Include="Repositories\TipoDocumentoRepository.cs" />
   </ItemGroup>
   <ItemGroup>

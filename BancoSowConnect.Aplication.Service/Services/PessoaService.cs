@@ -60,6 +60,21 @@ namespace BancoSowConnect.Aplication.Service.Services
             return retornoDTO;
         }
 
+        public BaseRetornoDTO<List<PessoaViewModel>> GetByName(string name)
+        {
+            BaseRetornoDTO<List<PessoaViewModel>> retornoDTO = new BaseRetornoDTO<List<PessoaViewModel>>();
+
+            BaseExceptionSystem<List<PessoaViewModel>>.BaseHandleExcetion(() =>
+            {
+                List<PessoaEntity> listapessoa = _pessoaRepository.GetByName(name).ToList();
+
+                retornoDTO.Value = Mapper.Map<List<PessoaEntity>, List<PessoaViewModel>>(listapessoa);
+
+            }, MensagemSistema.FormataMensagem(MensagemSistema.NenhumResultadoEncontrado, MensagemSistema.Pessoa), ref retornoDTO);
+
+            return retornoDTO;
+        }
+    
         public BaseRetornoDTO<int> Insert(PessoaViewModel t)
         {
             BaseRetornoDTO<int> retornoDTO = new BaseRetornoDTO<int>();
@@ -73,6 +88,7 @@ namespace BancoSowConnect.Aplication.Service.Services
                     retornoDTO.Value = _pessoaRepository.Insert(pessoa);
 
                     pessoa.Conta.Numero = ContaNumeroBusiness.GerarNumero();
+                    pessoa.Conta.Pessoa = new PessoaEntity() { Id = retornoDTO.Value };
                     _contaRepository.Insert(pessoa.Conta);
 
                     foreach (var documento in pessoa.Documentos)
@@ -84,7 +100,6 @@ namespace BancoSowConnect.Aplication.Service.Services
             }, MensagemSistema.FormataMensagem(MensagemSistema.Cadastrar, MensagemSistema.Pessoa), ref retornoDTO);
 
             return retornoDTO;
-
         }
 
         public BaseRetornoDTO<List<PessoaViewModel>> SelectAll()
@@ -93,14 +108,9 @@ namespace BancoSowConnect.Aplication.Service.Services
 
             BaseExceptionSystem<List<PessoaViewModel>>.BaseHandleExcetion(() =>
             {
-                var listapessoa = _pessoaRepository.SelectAll();
-
-                retornoDTO.Value = new List<PessoaViewModel>();
-
-                foreach (var pessoaEntity in listapessoa)
-                {
-                    retornoDTO.Value.Add(Mapper.Map<PessoaEntity, PessoaViewModel>(pessoaEntity));
-                }
+                var listapessoa = _pessoaRepository.SelectAll().ToList();
+                
+                retornoDTO.Value = Mapper.Map<List<PessoaEntity>, List<PessoaViewModel>>(listapessoa);
 
             }, MensagemSistema.FormataMensagem(MensagemSistema.NenhumResultadoEncontrado, MensagemSistema.Pessoa), ref retornoDTO);
 

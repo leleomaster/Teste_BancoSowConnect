@@ -13,7 +13,7 @@ namespace BancoSowConnect.Domain.Entity
 
         public string Nome { get; set; }
 
-        public IEnumerable<DocumentoEntity> Documentos { get; set; }
+        public IList<DocumentoEntity> Documentos { get; set; }
 
         public EnderecoEntity Endereco { get; set; }
 
