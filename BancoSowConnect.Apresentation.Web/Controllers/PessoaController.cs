@@ -9,31 +9,62 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BancoSowConnect.Apresentation.Web.Controllers
+namespace PessoaSowConnect.Apresentation.Web.Controllers
 {
-    [Authorize]
-    public class BancoController : Controller
+    public class PessoaController : Controller
     {
-        private readonly ICallAPIHttpClient<BancoViewModel> _callAPIHttpClient;
-        private readonly string methodAPICreate = "banco/v1/criar";
-        private readonly string methodAPIDelete = "banco/v1/excluir/";
-        private readonly string methodAPIEdit = "banco/v1/atualizar/";
-        private readonly string methodAPISearch = "banco/v1/obter/";
+        private readonly ICallAPIHttpClient<PessoaViewModel> _callAPIHttpClient;
+        private readonly string methodAPICreate = "pessoa/v1/criar";
+        private readonly string methodAPIDelete = "pessoa/v1/excluir/";
+        private readonly string methodAPIEdit = "pessoa/v1/atualizar/";
+        private readonly string methodAPISearch = "pessoa/v1/obter/";
 
-        public BancoController()
+        public PessoaController()
         {
-            _callAPIHttpClient = new CallAPIHttpClient<BancoViewModel>();
+            _callAPIHttpClient = new CallAPIHttpClient<PessoaViewModel>();
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            PessoaViewModel model = new PessoaViewModel()
+            {
+                Documentos = new List<DocumentoViewModel>
+                {
+                    new DocumentoViewModel()
+                    {
+                        TipoDocumentoEntity = new TipoDocumentoViewModel()
+                        {
+                            Nome = "CPF",
+                            Descricao = "Cadastro de Pessoa Fisíca"
+                        }
+                    },
+                    new DocumentoViewModel()
+                    {
+                        TipoDocumentoEntity = new TipoDocumentoViewModel()
+                        {
+                            Nome = "CNPJ",
+                            Descricao = "Cadastro Nacional da Pessoa Jurídica "
+                        }
+                    },
+                    new DocumentoViewModel()
+                    {
+                        TipoDocumentoEntity = new TipoDocumentoViewModel()
+                        {
+                            Nome = "RG",
+                            Descricao = "Registro Geral"
+                        }
+                    },
+                }
+            };
+
+
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(BancoViewModel model)
+        public async Task<ActionResult> Create(PessoaViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +87,7 @@ namespace BancoSowConnect.Apresentation.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(BancoViewModel model)
+        public async Task<ActionResult> Edit(PessoaViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +107,7 @@ namespace BancoSowConnect.Apresentation.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
-        public async Task<ActionResult> DeleteBanco(int id)
+        public async Task<ActionResult> DeletePessoa(int id)
         {
             var retorno = await _callAPIHttpClient.DeleteAsync(id, methodAPIDelete);
 
@@ -87,7 +118,7 @@ namespace BancoSowConnect.Apresentation.Web.Controllers
 
             ViewBag.BaseRetornoDTO = retorno;
 
-            return View(new BancoViewModel());            
+            return View(new PessoaViewModel());
         }
 
         [HttpGet]

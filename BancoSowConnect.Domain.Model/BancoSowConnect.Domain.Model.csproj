@@ -50,13 +50,26 @@
     <Compile Include="ReturnPattern\EStatusResponse.cs" />
     <Compile Include="ReturnPattern\RetornoDTO.cs" />
     <Compile Include="ViewModels\BancoViewModel.cs" />
+    <Compile Include="ViewModels\CidadeViewModel.cs" />
     <Compile Include="ViewModels\ContaViewModel.cs" />
     <Compile Include="ViewModels\DocumentoViewModel.cs" />
     <Compile Include="ViewModels\EnderecoViewModel.cs" />
+    <Compile Include="ViewModels\EstadoViewModel.cs" />
+    <Compile Include="ViewModels\OperacaoContaViewModel.cs" />
+    <Compile Include="ViewModels\PaisViewModel.cs" />
     <Compile Include="ViewModels\PessoaViewModel.cs" />
+    <Compile Include="ViewModels\TipoDocumentoViewModel.cs" />
+    <Compile Include="ViewModels\TipoOperacaoViewModel.cs" />
+    <Compile Include="ViewModels\TransferenciaViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BancoSowConnect.Domain.Entity\BancoSowConnect.Domain.Entity.csproj">
+      <Project>{448361D6-C644-4D03-9B3F-3D8D25D39AA0}</Project>
+      <Name>BancoSowConnect.Domain.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

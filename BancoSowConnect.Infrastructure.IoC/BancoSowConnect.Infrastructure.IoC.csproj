@@ -69,9 +69,17 @@
       <Project>{AF47778E-7BB4-4EEB-8C50-3705DE773B2A}</Project>
       <Name>BancoSowConnect.Aplication.Service</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BancoSowConnect.Apresentation.Web\BancoSowConnect.Apresentation.Web.csproj">
+      <Project>{15FB9140-F8A2-4E27-8158-64688C08B229}</Project>
+      <Name>BancoSowConnect.Apresentation.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BancoSowConnect.Domain.Entity\BancoSowConnect.Domain.Entity.csproj">
       <Project>{448361D6-C644-4D03-9B3F-3D8D25D39AA0}</Project>
       <Name>BancoSowConnect.Domain.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BancoSowConnect.Domain.Model\BancoSowConnect.Domain.Model.csproj">
+      <Project>{05C3171E-EFC7-478B-A32D-3B0C81B60595}</Project>
+      <Name>BancoSowConnect.Domain.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\BancoSowConnect.Infrastructure.Repository\BancoSowConnect.Infrastructure.Repository.csproj">
       <Project>{E2375726-8311-42CD-B81B-51107C1C255E}</Project>

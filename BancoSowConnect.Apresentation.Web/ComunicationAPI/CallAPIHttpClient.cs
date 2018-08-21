@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Text;
 using BancoSowConnect.Aplication.Service;
+using BancoSowConnect.Apresentation.Web.ComunicationAPI.Interfaces;
 
 namespace BancoSowConnect.Apresentation.Web.ComunicationAPI
 {
-    public class CallAPIHttpClient<T>
+    public class CallAPIHttpClient<T> : ICallAPIHttpClient<T>
     {
         private readonly HttpClient _httpClient;
 
@@ -21,24 +22,24 @@ namespace BancoSowConnect.Apresentation.Web.ComunicationAPI
             _httpClient = HttpClienteSingletion.GetInstanceHttpClient;
         }
 
-        private BaseRetornoDTO<T> DeserializeObject(string json)
+        public BaseRetornoDTO<T> DeserializeObject(string json)
         {
             return JsonConvert.DeserializeObject<BaseRetornoDTO<T>>(json);
         }
 
-        private string SerializeObject(T obj)
+        public string SerializeObject(T obj)
         {
             return JsonConvert.SerializeObject(obj);
         }
 
-        public async Task<BaseRetornoDTO<T>> GetAsync(int? id, string nameMethod)
+        public async Task<BaseRetornoDTO<T>> GetAsync(int id, string nameMethod)
         {
             BaseRetornoDTO<T> retorno = null;
             try
             {
-                nameMethod = id == null ? nameMethod : $"{nameMethod}?id={id}";
+                string actionWithParamiter = $"{nameMethod}?id={id}";
 
-                var responseTask = await _httpClient.GetAsync(nameMethod);
+                var responseTask = await _httpClient.GetAsync(actionWithParamiter);
 
                 if (responseTask.IsSuccessStatusCode)
                 {
@@ -133,6 +134,31 @@ namespace BancoSowConnect.Apresentation.Web.ComunicationAPI
             {
                 // Log ex
                 retorno = new BaseRetornoDTO<bool>()
+                {
+                    EStatusResponse = EStatusResponse.ErrorAplicacao,
+                    Message = MensagemSistema.APIIndisponivel
+                };
+            }
+            return retorno;
+        }
+
+        public async Task<BaseRetornoDTO<List<T>>> GetListAsync(string nameMethod)
+        {
+            BaseRetornoDTO<List<T>> retorno = null;
+            try
+            {
+                var responseTask = await _httpClient.GetAsync(nameMethod);
+
+                if (responseTask.IsSuccessStatusCode)
+                {
+                    var readTask = await responseTask.Content.ReadAsStringAsync();
+                    retorno = JsonConvert.DeserializeObject<BaseRetornoDTO<List<T>>>(readTask);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log ex
+                retorno = new BaseRetornoDTO<List<T>>()
                 {
                     EStatusResponse = EStatusResponse.ErrorAplicacao,
                     Message = MensagemSistema.APIIndisponivel

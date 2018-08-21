@@ -1,15 +1,11 @@
-﻿using BancoSowConnect.Aplication.Service.Interfaces;
+﻿using AutoMapper;
+using BancoSowConnect.Aplication.Service.Interfaces;
 using BancoSowConnect.Domain.Entity;
 using BancoSowConnect.Domain.Entity.Business.Interfaces;
-using BancoSowConnect.Domain.Entity.Mappers;
 using BancoSowConnect.Domain.Model.ReturnPattern;
 using BancoSowConnect.Domain.Model.ViewModels;
 using BancoSowConnect.Infrastructure.Repository.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BancoSowConnect.Aplication.Service.Services
 {
@@ -33,7 +29,7 @@ namespace BancoSowConnect.Aplication.Service.Services
                 _bancoRepository.Delete(id);
                 retornoDTO.Value = true;
 
-            }, MensagemSistema.FormataMensagem(MensagemSistema.Excluir, "Banco"), ref retornoDTO);
+            }, MensagemSistema.FormataMensagem(MensagemSistema.Excluir, MensagemSistema.Banco), ref retornoDTO);
 
             return retornoDTO;
         }
@@ -46,9 +42,9 @@ namespace BancoSowConnect.Aplication.Service.Services
             {
                 var banco = _bancoRepository.GetById(id);
 
-                retornoDTO.Value = BancoMapper.DomainTOViewModel(banco);
+                retornoDTO.Value = Mapper.Map<BancoEntity, BancoViewModel>(banco);
 
-            }, MensagemSistema.FormataMensagem(MensagemSistema.NenhumResultadoEncontrado, "Banco"), ref retornoDTO);
+            }, MensagemSistema.FormataMensagem(MensagemSistema.NenhumResultadoEncontrado, MensagemSistema.Banco), ref retornoDTO);
 
             return retornoDTO;
         }
@@ -59,11 +55,11 @@ namespace BancoSowConnect.Aplication.Service.Services
 
             BaseExceptionSystem<int>.BaseHandleExcetion(() =>
             {
-                var banco = BancoMapper.ViewModelToDomain(t);
+                var banco = Mapper.Map<BancoViewModel, BancoEntity>(t);
 
                 retornoDTO.Value = _bancoRepository.Insert(banco);
 
-            }, MensagemSistema.FormataMensagem(MensagemSistema.Cadastrar, "Banco"), ref retornoDTO);
+            }, MensagemSistema.FormataMensagem(MensagemSistema.Cadastrar, MensagemSistema.Banco), ref retornoDTO);
 
             return retornoDTO;
         }
@@ -80,10 +76,10 @@ namespace BancoSowConnect.Aplication.Service.Services
 
                 foreach (var bancoEntity in listaBanco)
                 {
-                    retornoDTO.Value.Add(BancoMapper.DomainTOViewModel(bancoEntity));
+                    retornoDTO.Value.Add(Mapper.Map<BancoEntity,BancoViewModel>(bancoEntity));
                 }
 
-            }, MensagemSistema.FormataMensagem(MensagemSistema.NenhumResultadoEncontrado, "Banco"), ref retornoDTO);
+            }, MensagemSistema.FormataMensagem(MensagemSistema.NenhumResultadoEncontrado, MensagemSistema.Banco), ref retornoDTO);
 
             return retornoDTO;
         }
@@ -94,11 +90,11 @@ namespace BancoSowConnect.Aplication.Service.Services
 
             BaseExceptionSystem<bool>.BaseHandleExcetion(() =>
             {
-                var banco = BancoMapper.ViewModelToDomain(t);
+                var banco = Mapper.Map<BancoViewModel, BancoEntity>(t);
                 _bancoRepository.Update(banco);
                 retornoDTO.Value = true;
 
-            }, MensagemSistema.FormataMensagem(MensagemSistema.Alterar, "Banco"), ref retornoDTO);
+            }, MensagemSistema.FormataMensagem(MensagemSistema.Alterar, MensagemSistema.Banco), ref retornoDTO);
 
             return retornoDTO;
         }

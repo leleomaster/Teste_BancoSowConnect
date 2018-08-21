@@ -19,6 +19,12 @@ namespace BancoSowConnect.Aplication.Service
         public const string NenhumResultadoEncontrado = "Nenhum restulado encontrado para a pesquisa do {0}";
 
         public const string APIIndisponivel = "API indisponível. tente novamente mais tarde";
+
+        public const string Banco = "Banco";
+        public const string Pessoa = "Pessoa";
+        public const string Conta = "Conta";
+        public const string Documento = "Documento";
+
         public static string FormataMensagem(string mensagem, string texto)
         {
             return string.Format(mensagem, texto);

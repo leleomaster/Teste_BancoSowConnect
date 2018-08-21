@@ -28,5 +28,8 @@ namespace BancoSowConnect.Domain.Entity
         public bool Ativa { get; set; }
 
         public IEnumerable<TransferenciaEntity> Transferencias { get; set; }
+
+        public IEnumerable<OperacaoContaEntity> OperacaoContas { get; set; }
+        
     }
 }

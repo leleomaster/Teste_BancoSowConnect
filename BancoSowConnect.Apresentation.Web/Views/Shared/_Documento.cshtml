@@ -1,0 +1,34 @@
+﻿@using BancoSowConnect.Domain.Model.ViewModels
+@model PessoaViewModel
+
+    @for (int i = 0; i < Model.Documentos.Count(); i++)
+    {
+        <div class="form-horizontal panel panel-info">
+            <h4>@Model.Documentos[i].TipoDocumentoEntity.Nome</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Documentos[i].Numero, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Documentos[i].Numero, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Documentos[i].Numero, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Documentos[i].DataEmissao, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Documentos[i].DataEmissao, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Documentos[i].DataEmissao, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => Model.Documentos[i].EmitidoPor, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => Model.Documentos[i].EmitidoPor, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => Model.Documentos[i].EmitidoPor, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    }

@@ -196,10 +196,12 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="BaseHandleExceptionWeb.cs" />
     <Compile Include="ComunicationAPI\CallAPIHttpClient.cs" />
+    <Compile Include="ComunicationAPI\Interfaces\ICallAPIHttpClient.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PessoaController.cs" />
     <Compile Include="DesignPatterns\Singletons\HttpClienteSingletion.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -272,6 +274,9 @@
     <Content Include="Views\Banco\Delete.cshtml" />
     <Content Include="Views\Banco\Edit.cshtml" />
     <Content Include="Views\Banco\Search.cshtml" />
+    <Content Include="Views\Pessoa\Create.cshtml" />
+    <Content Include="Views\Shared\_Documento.cshtml" />
+    <Content Include="Views\Shared\_Endereco.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

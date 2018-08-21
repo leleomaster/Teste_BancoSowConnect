@@ -16,5 +16,7 @@ namespace BancoSowConnect.Domain.Model.ViewModels
         public string Nome { get; set; }
 
         public int IdUsuario { get; set; }
+
+        public IEnumerable<ContaViewModel> Contas { get; set; }
     }
 }
