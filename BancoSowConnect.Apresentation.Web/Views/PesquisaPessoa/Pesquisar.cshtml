@@ -1,0 +1,121 @@
+﻿@using BancoSowConnect.Domain.Model.ViewModels
+@model PesquisaPessoaViewModel
+
+@{
+    ViewBag.Title = "Pesquisar Pessoa";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <h4>Pesquisa de Pessoa</h4>
+        <hr />
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Documento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                CPF @Html.RadioButtonFor(model => model.EhCPF, (Model.EhCPF), new { @checked = (Model.EhCPF), @id = "radioButtonCPF" })
+            </div>
+            <div class="col-md-5">
+                CNPJ @Html.RadioButtonFor(model => model.EhCPF, (!Model.EhCPF), new { @checked = (!Model.EhCPF), @id = "radioButtonCPNJ" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" id="labelDocumentoPessoa">
+
+            </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Documento, new { htmlAttributes = new { @class = "form-control", @id = "idDocumentoPessoa" } })
+                @Html.HiddenFor(m => m.EhCPF, new { @id = "hiddenEhCpf" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @maxlength = 35 } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NumeroConta, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NumeroConta, new { htmlAttributes = new { @class = "form-control numero_conta", @maxlength = 16 } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Pesquisar" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.ListaPessoa != null && Model.ListaPessoa.Count() > 0)
+{<div class="panel panel-warning">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Resultado da pesquisa</div>
+        <table class="table table-bordered">
+            <tr>
+                <th>
+                    Nome do Banco
+                </th>
+                <th>
+                    Nome da Pessoa
+                </th>
+                <th>
+                    Número da Conta
+                </th>
+                <th>
+                    Saldo da Conta
+                </th>
+                <th>
+                    Tipo Pessoa
+                </th>
+                <th>
+                    Debitar/Creditar
+                </th>
+                <th>
+                    Fazer Transferência
+                </th>
+                <th>
+                    Relatório de Transações
+                </th>
+            </tr>
+
+            @foreach (var pessoa in Model.ListaPessoa)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => pessoa.Conta.Banco.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => pessoa.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => pessoa.Conta.Numero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => pessoa.Conta.Saldo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => pessoa.TipoPessoa)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Debitar/Creditar", "Operacao", "Transacao", new { id = pessoa.Id }, new { @class = "btn btn-primary" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Transferir", "Transferir", "Transacao", new { id = pessoa.Id }, new { @class = "btn btn-info" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Relatórios", "Index", "Relatorio", new { id = pessoa.Id }, new { @class = "btn btn-warning" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}

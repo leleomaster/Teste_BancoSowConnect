@@ -56,7 +56,9 @@
     <Compile Include="ViewModels\EnderecoViewModel.cs" />
     <Compile Include="ViewModels\EstadoViewModel.cs" />
     <Compile Include="ViewModels\OperacaoContaViewModel.cs" />
+    <Compile Include="ViewModels\OperacaoViewModel.cs" />
     <Compile Include="ViewModels\PaisViewModel.cs" />
+    <Compile Include="ViewModels\PesquisaPessoaViewModel.cs" />
     <Compile Include="ViewModels\PessoaViewModel.cs" />
     <Compile Include="ViewModels\TipoDocumentoViewModel.cs" />
     <Compile Include="ViewModels\TipoOperacaoViewModel.cs" />

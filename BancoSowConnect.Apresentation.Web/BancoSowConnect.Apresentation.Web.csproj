@@ -201,7 +201,10 @@
     <Compile Include="Controllers\BancoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TransacaoController.cs" />
+    <Compile Include="Controllers\PesquisaPessoaController.cs" />
     <Compile Include="Controllers\PessoaController.cs" />
+    <Compile Include="Controllers\RelatorioController.cs" />
     <Compile Include="DesignPatterns\Singletons\HttpClienteSingletion.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -227,16 +230,20 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\formatar-inputs.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.mask.js" />
+    <Content Include="Scripts\jquery.mask.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Views\pesquisa-pessoa.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -277,9 +284,14 @@
     <Content Include="Views\Pessoa\Create.cshtml" />
     <Content Include="Views\Shared\_Documento.cshtml" />
     <Content Include="Views\Shared\_Endereco.cshtml" />
+    <Content Include="Views\PesquisaPessoa\Pesquisar.cshtml" />
+    <Content Include="Views\Relatorio\Index.cshtml" />
+    <Content Include="Views\Transacao\Operacao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Operacao\" />
+    <Folder Include="Views\Transferencia\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

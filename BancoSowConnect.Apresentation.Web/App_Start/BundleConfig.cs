@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace BancoSowConnect.Apresentation.Web
 {
@@ -12,7 +11,10 @@ namespace BancoSowConnect.Apresentation.Web
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery.validate*",
+                         "~/Scripts/jquery.mask*",
+                         "~/Scripts/Views/pesquisa-pessoa.js",
+                         "~/Scripts/formatar-inputs.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.

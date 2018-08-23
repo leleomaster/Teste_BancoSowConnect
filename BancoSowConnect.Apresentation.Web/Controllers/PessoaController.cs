@@ -2,11 +2,8 @@
 using BancoSowConnect.Apresentation.Web.ComunicationAPI.Interfaces;
 using BancoSowConnect.Domain.Model.ReturnPattern;
 using BancoSowConnect.Domain.Model.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PessoaSowConnect.Apresentation.Web.Controllers

@@ -84,3 +84,6 @@ namespace BancoSowConnect.Infrastructure.Repository.Repositories
         }
     }
 }
+
+
+
