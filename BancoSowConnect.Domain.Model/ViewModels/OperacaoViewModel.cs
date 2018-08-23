@@ -21,6 +21,5 @@ namespace BancoSowConnect.Domain.Model.ViewModels
 
         [Display(Name = "Valor")]
         public string Valor { get; set; }
-
     }
 }

@@ -1,55 +1,65 @@
-﻿@model BancoSowConnect.Domain.Model.ViewModels.OperacaoViewModel
+﻿@using BancoSowConnect.Domain.Model.ReturnPattern
+@using BancoSowConnect.Domain.Model.ViewModels
+
+@model BancoSowConnect.Domain.Model.ViewModels.OperacaoViewModel
 
 @{
     ViewBag.Title = "Operação";
 }
 
+
 @using (Html.BeginForm())
 {
+    <div class="form-horizontal">
+        <h4>Operação</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-<div class="form-horizontal">
-    <h4>Operação</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.NomePessoa, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Model.NomePessoa
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.SaldoConta, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-           @Model.SaldoConta
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.EhDebito, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <div class="col-md-2">
-                Debito @Html.RadioButtonFor(model => model.EhDebito, (Model.EhDebito), new { @checked = (Model.EhDebito), @id = "radioButtonCPF" })
-            </div>
-            <div class="col-md-2">
-                Crédito @Html.RadioButtonFor(model => model.EhDebito, (!Model.EhDebito), new { @checked = (!Model.EhDebito), @id = "radioButtonCPNJ" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.NomePessoa, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Model.NomePessoa
             </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control money" } })
-            @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.SaldoConta, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Model.SaldoConta
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Executar" class="btn btn-primary" />
+        <div class="form-group">
+            @Html.LabelFor(model => model.EhDebito, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-2">
+                    Debito @Html.RadioButtonFor(model => model.EhDebito, (Model.EhDebito), new { @checked = (Model.EhDebito), @id = "radioButtonCPF" })
+                </div>
+                <div class="col-md-2">
+                    Crédito @Html.RadioButtonFor(model => model.EhDebito, (!Model.EhDebito), new { @checked = (!Model.EhDebito), @id = "radioButtonCPNJ" })
+                </div>
+            </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control money" } })
+                @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Executar" class="btn btn-primary" />
+            </div>
+        </div>
+
+        @if (ViewBag.BaseRetornoDTO != null)
+        {
+            <div class="panel panel-body">
+                @Html.Partial("_Mensagem", (RetornoDTO)ViewBag.BaseRetornoDTO)
+            </div>
+        }
     </div>
-</div>
 }

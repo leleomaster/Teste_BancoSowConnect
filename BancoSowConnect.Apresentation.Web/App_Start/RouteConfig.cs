@@ -14,6 +14,13 @@ namespace BancoSowConnect.Apresentation.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+               name: "transacao",
+               url: "{controller}/{action}/{int:idPessoa}",
+               defaults: new { controller = "Home", action = "Index" }
+           );
+
         }
     }
 }
