@@ -1,0 +1,60 @@
+﻿@using BancoSowConnect.Domain.Model.ReturnPattern
+@using BancoSowConnect.Domain.Model.ViewModels
+
+@model TransferenciaViewModel
+
+@{
+    ViewBag.Title = "Tranferir";
+}
+<div class="panel panel-warning">
+    <div class="panel-body">
+
+        <form action="/transacao/transferir" method="post">
+            <div class="form-horizontal">
+                <h4>Tranferir</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <label class="col-md-12">
+                    DE:
+                </label>
+                <hr />
+
+                @Html.EditorFor(model => model.ContaDebito, "_conta")
+
+                <hr />
+                <label class="col-md-12">
+                    PARA:
+                </label>
+                <hr />
+            
+                @Html.EditorFor(model => model.ContaCredito, "_conta")              
+
+                <div class="panel panel-info">
+                    <div class="panel panel-body">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Valor, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Valor, new { htmlAttributes = new { @class = "form-control money", @maxlength = 18 } })
+                                @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Fazer a tranferência" class="btn btn-primary" />
+                    </div>
+                </div>
+
+                @if (ViewBag.BaseRetornoDTO != null)
+                {
+                    <div class="panel panel-body">
+                        @Html.Partial("_Mensagem", (RetornoDTO)ViewBag.BaseRetornoDTO)
+                    </div>
+                }
+            </div>
+        </form>
+    </div>
+</div>

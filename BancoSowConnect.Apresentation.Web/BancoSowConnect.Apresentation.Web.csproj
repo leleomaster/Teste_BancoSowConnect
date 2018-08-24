@@ -287,6 +287,8 @@
     <Content Include="Views\PesquisaPessoa\Pesquisar.cshtml" />
     <Content Include="Views\Relatorio\Index.cshtml" />
     <Content Include="Views\Transacao\Operacao.cshtml" />
+    <Content Include="Views\Transacao\Transferir.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\_conta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -310,6 +312,10 @@
     <ProjectReference Include="..\BancoSowConnect.Aplication.Service\BancoSowConnect.Aplication.Service.csproj">
       <Project>{AF47778E-7BB4-4EEB-8C50-3705DE773B2A}</Project>
       <Name>BancoSowConnect.Aplication.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BancoSowConnect.Domain.Entity\BancoSowConnect.Domain.Entity.csproj">
+      <Project>{448361D6-C644-4D03-9B3F-3D8D25D39AA0}</Project>
+      <Name>BancoSowConnect.Domain.Entity</Name>
     </ProjectReference>
     <ProjectReference Include="..\BancoSowConnect.Domain.Model\BancoSowConnect.Domain.Model.csproj">
       <Project>{05C3171E-EFC7-478B-A32D-3B0C81B60595}</Project>

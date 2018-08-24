@@ -1,0 +1,49 @@
+﻿@using BancoSowConnect.Domain.Model.ViewModels
+
+@model ContaViewModel
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        @Model.NomeTipoConta
+    </div>
+    <div class="panel panel-body">
+
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                Nome do Banco:
+            </label>
+            <div class="col-md-9">
+                @Html.HiddenFor(numero => numero.Numero)
+                @Html.HiddenFor(numero => numero.TipoConta)
+                @Html.DisplayFor(model => model.Banco.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.Banco.Nome)
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                Nome da Pessoa:
+            </label>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.Pessoa.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.Pessoa.Nome)
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-3">
+                Saldo disponível na conta:
+            </label>
+            <div class="col-md-9">
+                @Html.DisplayFor(model => model.Saldo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.Saldo)
+            </div>
+
+        </div>
+
+      
+    </div>
+</div>
+

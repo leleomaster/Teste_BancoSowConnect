@@ -16,8 +16,6 @@ namespace BancoSowConnect.Domain.Model.ViewModels
 
         public DateTime Data { get; set; }
 
-        public decimal ValorContaDebito { get; set; }
-
-        public decimal ValorContaCredito { get; set; }
+        public string Valor { get; set; }
     }
 }

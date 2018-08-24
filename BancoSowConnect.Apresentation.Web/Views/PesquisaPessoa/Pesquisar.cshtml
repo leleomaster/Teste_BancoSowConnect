@@ -106,13 +106,13 @@
                         @Html.DisplayFor(modelItem => pessoa.TipoPessoa)
                     </td>
                     <td>
-                        @Html.ActionLink("Debitar/Creditar", "Operacao", "Transacao", new { id = pessoa.Id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Debitar/Creditar", "Operacao", "Transacao", new { idPessoa = pessoa.Id }, new { @class = "btn btn-primary col-md-12" })
                     </td>
                     <td>
-                        @Html.ActionLink("Transferir", "Transferir", "Transacao", new { id = pessoa.Id }, new { @class = "btn btn-info" })
+                        @Html.ActionLink("Transferir", "Transferir", "Transacao", new { idPessoa = pessoa.Id }, new { @class = "btn btn-info col-md-12" })
                     </td>
                     <td>
-                        @Html.ActionLink("Relatórios", "Index", "Relatorio", new { id = pessoa.Id }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Relatórios", "Index", "Relatorio", new { idPessoa = pessoa.Id }, new { @class = "btn btn-warning col-md-12" })
                     </td>
                 </tr>
             }

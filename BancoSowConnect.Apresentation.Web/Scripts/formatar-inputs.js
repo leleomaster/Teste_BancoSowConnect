@@ -62,7 +62,7 @@
     carregarMaskCNPJ();
     carregarMaskCPF();
 
-    $('.money').mask('#.##0,00', { reverse: true });
+    $('.money').mask('###.###.##0,00', { reverse: true });
 
     var SPMaskBehavior = function (val)
     {

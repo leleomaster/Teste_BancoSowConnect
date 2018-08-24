@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,14 @@ namespace BancoSowConnect.Domain.Model.ViewModels
         public decimal Numero { get; set; }
 
         public TipoContaEnum TipoConta { get; set; }
+
+        public string NomeTipoConta
+        {
+            get
+            {
+                return TipoConta == TipoContaEnum.CORRENTE ? "Conta Corrente" : "Conta Poupança";
+            }
+        }
 
         public PessoaViewModel Pessoa { get; set; }
 
